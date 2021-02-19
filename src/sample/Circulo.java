@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 
 public class Circulo {
 
+    private int name;
     private int area;
     private int radio;
 

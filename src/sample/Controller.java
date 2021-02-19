@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,6 +35,18 @@ public class Controller implements Initializable {
     private MenuItem circulo;
     @FXML
     private Button addFig;
+    @FXML
+    private Label dato1;
+    @FXML
+    private Label dato2;
+    @FXML
+    private Label datos;
+    @FXML
+    private TextField valor1;
+    @FXML
+    private TextField valor2;
+    @FXML
+    private Pane dibujo;
 
     ArrayList<Object> arrayList = new ArrayList<>();
 
@@ -99,6 +112,15 @@ public class Controller implements Initializable {
         addFig.setVisible(false);
     }
 
+    void offDisplay() {
+        dato1.setVisible(false);
+        dato2.setVisible(false);
+        datos.setVisible(false);
+        valor1.setVisible(false);
+        valor2.setVisible(false);
+        dibujo.setVisible(false);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         figuraSeleccionada.setVisible(false);
@@ -107,5 +129,11 @@ public class Controller implements Initializable {
         textoVariable2.setVisible(false);
         y.setVisible(false);
         addFig.setVisible(false);
+        dato1.setVisible(false);
+        dato2.setVisible(false);
+        datos.setVisible(false);
+        valor1.setVisible(false);
+        valor2.setVisible(false);
+        dibujo.setVisible(false);
     }
 }
