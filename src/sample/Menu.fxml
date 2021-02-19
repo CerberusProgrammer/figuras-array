@@ -20,15 +20,15 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <MenuButton layoutX="14.0" layoutY="105.0" mnemonicParsing="false" text="Seleccione una figura">
+            <MenuButton fx:id="selectFigure" layoutX="14.0" layoutY="105.0" mnemonicParsing="false" text="Seleccione una figura">
               <items>
-                <MenuItem fx:id="circulo" mnemonicParsing="false" onAction="#selectFigure" text="Circulo" />
-                  <MenuItem fx:id="cuadrado" mnemonicParsing="false" onAction="#selectFigure" text="Cuadrado" />
-                  <MenuItem fx:id="rectangulo" mnemonicParsing="false" onAction="#selectFigure" text="Rectangulo" />
-                  <MenuItem fx:id="triangulo" mnemonicParsing="false" onAction="#selectFigure" text="Triangulo" />
+                <MenuItem fx:id="Circulo" mnemonicParsing="false" onAction="#selectFigure" text="Circulo" />
+                  <MenuItem fx:id="Cuadrado" mnemonicParsing="false" onAction="#selectFigure" text="Cuadrado" />
+                  <MenuItem fx:id="Rectangulo" mnemonicParsing="false" onAction="#selectFigure" text="Rectangulo" />
+                  <MenuItem fx:id="Triangulo" mnemonicParsing="false" onAction="#selectFigure" text="Triangulo" />
               </items>
             </MenuButton>
-            <Label fx:id="figuraSeleccionada" layoutX="390.0" layoutY="67.0" style="visibility: false;" text="Figura seleccionada" textFill="WHITE">
+            <Label fx:id="figuraSeleccionada" layoutX="390.0" layoutY="67.0" text="Figura seleccionada" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -44,28 +44,24 @@
                </font>
             </Label>
             <MenuButton fx:id="listFigure" layoutX="14.0" layoutY="189.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Observar una figura" />
-            <Label fx:id="textoVariable1" layoutX="393.0" layoutY="110.0" style="visibility: false;" text="variable1" textFill="WHITE">
+            <Label fx:id="textoVariable1" layoutX="393.0" layoutY="110.0" text="variable1" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="393.0" layoutY="143.0" style="visibility: false;" fx:id="x" />
-            <Button fx:id="addFig" layoutX="456.0" layoutY="236.0" mnemonicParsing="false" onAction="#addFigure" style="visibility: false;" text="Agregar figura">
+            <TextField layoutX="393.0" layoutY="143.0" fx:id="x" />
+            <Button fx:id="addFig" layoutX="456.0" layoutY="236.0" mnemonicParsing="false" onAction="#addFigure" text="Agregar figura">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="y" layoutX="215.0" layoutY="143.0" style="visibility: false;" />
-            <Label fx:id="textoVariable2" layoutX="216.0" layoutY="110.0" style="visibility: false;" text="variable2" textFill="WHITE">
+            <TextField fx:id="y" layoutX="215.0" layoutY="143.0" />
+            <Label fx:id="textoVariable2" layoutX="216.0" layoutY="110.0" text="variable2" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Pane fx:id="dibujo" layoutX="188.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;">
-               <children>
-                  <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-               </children>
-            </Pane>
+            <Pane fx:id="dibujo" layoutX="188.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" />
             <Label fx:id="datos" layoutX="404.0" layoutY="54.0" text="Datos:" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -76,13 +72,19 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="valor1" layoutX="404.0" layoutY="111.0" />
-            <TextField fx:id="valor2" layoutX="404.0" layoutY="169.0" />
+            <TextField fx:id="valor1" disable="true" layoutX="404.0" layoutY="111.0" />
+            <TextField fx:id="valor2" disable="true" layoutX="404.0" layoutY="169.0" />
             <Label fx:id="dato2" layoutX="404.0" layoutY="144.0" text="dato2" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label fx:id="textArea" layoutX="404.0" layoutY="202.0" text="Area:" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="valorArea" disable="true" layoutX="404.0" layoutY="227.0" />
          </children>
       </Pane>
    </children>

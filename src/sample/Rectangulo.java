@@ -2,22 +2,36 @@ package sample;
 
 import javafx.scene.paint.Color;
 
-public class Rectangulo {
+public class Rectangulo extends Figura{
 
+    private String name;
     private int area;
     private int base;
     private int altura;
 
     public Rectangulo(int base, int altura) {
+        this.name = "rectangulo";
         this.area = base * altura;
         this.base = base;
         this.altura = altura;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
     public int getArea() {
         return area;
     }
 
+    @Override
     public void setArea(int area) {
         this.area = area;
     }
