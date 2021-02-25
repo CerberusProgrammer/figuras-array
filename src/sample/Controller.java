@@ -23,17 +23,13 @@ public class Controller implements Initializable {
     @FXML
     private MenuButton selectFigure;
     @FXML
+    private Label figuraName;
+    @FXML
     private Label textoVariable2;
     @FXML
     private Label figuraSeleccionada;
     @FXML
     private Label textoVariable1;
-    @FXML
-    private TextField x;
-    @FXML
-    private TextField y;
-    @FXML
-    private Button addFig;
     @FXML
     private Label dato1;
     @FXML
@@ -41,15 +37,24 @@ public class Controller implements Initializable {
     @FXML
     private Label datos;
     @FXML
+    private Label textArea;
+    @FXML
+    private TextField x;
+    @FXML
+    private TextField y;
+    @FXML
     private TextField valor1;
     @FXML
     private TextField valor2;
     @FXML
+    private Button addFig;
+    @FXML
+    private Button editButton;
+    @FXML
     private Pane dibujo;
     @FXML
     private TextField valorArea;
-    @FXML
-    private Label textArea;
+
 
     ArrayList<Figura> arrayList = new ArrayList<>();
 
@@ -102,6 +107,9 @@ public class Controller implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 Figura figura = arrayList.get(Integer.parseInt(item.getId()));
+                System.out.println(((MenuItem)event.getSource()).getText());
+                figuraName.setText(((MenuItem)event.getSource()).getText());
+                figuraName.setVisible(true);
 
                 dato1.setText("Base:");
                 valorArea.setText("" + figura.getArea());
@@ -134,6 +142,8 @@ public class Controller implements Initializable {
                         valor1.setText("" + ((Rectangulo)figura).getBase());
                         valor2.setVisible(true);
                         valor2.setText("" + ((Rectangulo)figura).getAltura());
+                        dato2.setText("Altura");
+                        dato2.setVisible(true);
 
                         Rectangle rectangles = new Rectangle();
                         rectangles.setX(dibujo.getWidth()/4);
@@ -146,6 +156,8 @@ public class Controller implements Initializable {
                         valor1.setText("" + ((Triangulo)figura).getBase());
                         valor2.setVisible(true);
                         valor2.setText("" + ((Triangulo)figura).getAltura());
+                        dato2.setText("Altura");
+                        dato2.setVisible(true);
 
                         Polygon polygon = new Polygon();
                         polygon.getPoints().addAll(
@@ -157,6 +169,7 @@ public class Controller implements Initializable {
                         dibujo.getChildren().add(polygon);
                         break;
                 }
+                editButton.setVisible(true);
                 datos.setVisible(true);
                 dato1.setVisible(true);
                 valor1.setVisible(true);
@@ -172,6 +185,32 @@ public class Controller implements Initializable {
         selectFigure.setDisable(false);
     }
 
+    @FXML
+    void editValue(ActionEvent event) {
+        int index = Integer.parseInt(figuraName.getText().substring(0, 1)) - 1;
+        String figure = figuraName.getText().substring(4);
+
+        arrayList.remove(index);
+
+        switch (figure) {
+            case "Circulo":
+                arrayList.add(index, new Circulo(Integer.parseInt(valor1.getText())));
+                break;
+            case "Cuadrado":
+                arrayList.add(index, new Cuadrado(Integer.parseInt(valor1.getText())));
+                break;
+            case "Rectangulo":
+                arrayList.add(index, new Rectangulo(Integer.parseInt(valor1.getText()),
+                        Integer.parseInt(valor2.getText())));
+                break;
+            case "Triangulo":
+                arrayList.add(index, new Triangulo(Integer.parseInt(valor1.getText()),
+                        Integer.parseInt(valor2.getText())));
+                break;
+        }
+        valorArea.setText("" + arrayList.get(index).getArea());
+    }
+
     void offPanel() {
         figuraSeleccionada.setVisible(false);
         textoVariable1.setVisible(false);
@@ -182,6 +221,8 @@ public class Controller implements Initializable {
     }
 
     void offDisplay() {
+        editButton.setVisible(false);
+        figuraName.setVisible(false);
         dato1.setVisible(false);
         dato2.setVisible(false);
         datos.setVisible(false);
@@ -194,19 +235,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        figuraSeleccionada.setVisible(false);
-        textoVariable1.setVisible(false);
-        x.setVisible(false);
-        textoVariable2.setVisible(false);
-        y.setVisible(false);
-        addFig.setVisible(false);
-        dato1.setVisible(false);
-        dato2.setVisible(false);
-        datos.setVisible(false);
-        valor1.setVisible(false);
-        valor2.setVisible(false);
-        dibujo.setVisible(false);
-        textArea.setVisible(false);
-        valorArea.setVisible(false);
+        offPanel();
+        offDisplay();
     }
 }
