@@ -49,13 +49,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="393.0" layoutY="143.0" fx:id="x" />
+            <TextField layoutX="393.0" layoutY="143.0" onKeyTyped="#onlyNumbers" fx:id="x" />
             <Button fx:id="addFig" layoutX="456.0" layoutY="236.0" mnemonicParsing="false" onAction="#addFigure" text="Agregar figura">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <TextField fx:id="y" layoutX="215.0" layoutY="143.0" />
+            <TextField fx:id="y" layoutX="215.0" layoutY="143.0" onKeyTyped="#onlyNumbers" />
             <Label fx:id="textoVariable2" layoutX="216.0" layoutY="110.0" text="variable2" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -72,8 +72,8 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="valor1" layoutX="404.0" layoutY="111.0" />
-            <TextField fx:id="valor2" layoutX="404.0" layoutY="169.0" />
+            <TextField fx:id="valor1" layoutX="404.0" layoutY="111.0" onKeyTyped="#onlyNumbers" />
+            <TextField fx:id="valor2" layoutX="404.0" layoutY="169.0" onKeyTyped="#onlyNumbers" />
             <Label fx:id="dato2" layoutX="404.0" layoutY="144.0" text="dato2" textFill="WHITE">
                <font>
                   <Font size="14.0" />

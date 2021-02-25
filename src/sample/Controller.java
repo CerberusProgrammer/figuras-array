@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -106,8 +107,8 @@ public class Controller implements Initializable {
         item.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                offDisplay();
                 Figura figura = arrayList.get(Integer.parseInt(item.getId()));
-                System.out.println(((MenuItem)event.getSource()).getText());
                 figuraName.setText(((MenuItem)event.getSource()).getText());
                 figuraName.setVisible(true);
 
@@ -211,6 +212,13 @@ public class Controller implements Initializable {
         valorArea.setText("" + arrayList.get(index).getArea());
     }
 
+    public void onlyNumbers(KeyEvent keyEvent) {
+        char key = keyEvent.getCharacter().charAt(0);
+
+        if (!Character.isDigit(key))
+            keyEvent.consume();
+    }
+
     void offPanel() {
         figuraSeleccionada.setVisible(false);
         textoVariable1.setVisible(false);
@@ -235,6 +243,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         offPanel();
         offDisplay();
     }
