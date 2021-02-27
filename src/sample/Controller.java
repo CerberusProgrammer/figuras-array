@@ -56,7 +56,6 @@ public class Controller implements Initializable {
     @FXML
     private TextField valorArea;
 
-
     ArrayList<Figura> arrayList = new ArrayList<>();
 
     @FXML
@@ -243,7 +242,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         offPanel();
         offDisplay();
     }
