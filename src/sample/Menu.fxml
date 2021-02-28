@@ -11,7 +11,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Pane prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: black; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 50, 0, 0, 0); -fx-background-color: rgba(0, 0, 0, 0.5); -fx-background-radius: 10;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -91,6 +91,8 @@
                </font>
             </Button>
             <Label fx:id="figuraName" alignment="CENTER" contentDisplay="CENTER" layoutX="193.0" layoutY="229.0" prefHeight="17.0" prefWidth="191.0" text="figuraName" textAlignment="CENTER" />
+            <TextField fx:id="inputEliminar" layoutX="187.0" layoutY="266.0" prefHeight="25.0" prefWidth="116.0" promptText="Eliminar una figura" />
+            <Button layoutX="312.0" layoutY="266.0" mnemonicParsing="false" onAction="#eliminarFigura" prefHeight="25.0" prefWidth="76.0" text="Eliminar" />
          </children>
       </Pane>
    </children>

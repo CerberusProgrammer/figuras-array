@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -12,7 +13,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -51,6 +51,8 @@ public class Controller implements Initializable {
     private Button addFig;
     @FXML
     private Button editButton;
+    @FXML
+    private TextField inputEliminar;
     @FXML
     private Pane dibujo;
     @FXML
@@ -209,6 +211,12 @@ public class Controller implements Initializable {
                 break;
         }
         valorArea.setText("" + arrayList.get(index).getArea());
+    }
+
+    @FXML
+    void eliminarFigura(ActionEvent event) {
+        int index = Integer.parseInt(((TextField)event.getSource()).getText().substring(1));
+
     }
 
     public void onlyNumbers(KeyEvent keyEvent) {
