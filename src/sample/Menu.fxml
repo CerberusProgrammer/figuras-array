@@ -92,7 +92,7 @@
             </Button>
             <Label fx:id="figuraName" alignment="CENTER" contentDisplay="CENTER" layoutX="193.0" layoutY="229.0" prefHeight="17.0" prefWidth="191.0" text="figuraName" textAlignment="CENTER" />
             <TextField fx:id="inputEliminar" layoutX="187.0" layoutY="266.0" prefHeight="25.0" prefWidth="116.0" promptText="Eliminar una figura" />
-            <Button layoutX="312.0" layoutY="266.0" mnemonicParsing="false" onAction="#eliminarFigura" prefHeight="25.0" prefWidth="76.0" text="Eliminar" />
+            <Button fx:id="buttonDelete" layoutX="312.0" layoutY="266.0" mnemonicParsing="false" onAction="#eliminarFigura" prefHeight="25.0" prefWidth="76.0" text="Eliminar" />
          </children>
       </Pane>
    </children>

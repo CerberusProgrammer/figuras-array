@@ -57,6 +57,8 @@ public class Controller implements Initializable {
     private Pane dibujo;
     @FXML
     private TextField valorArea;
+    @FXML
+    private Button buttonDelete;
 
     ArrayList<Figura> arrayList = new ArrayList<>();
 
@@ -178,6 +180,8 @@ public class Controller implements Initializable {
                 textArea.setVisible(true);
                 valorArea.setVisible(true);
                 dibujo.setVisible(true);
+                inputEliminar.setVisible(true);
+                buttonDelete.setVisible(true);
             }
         });
 
@@ -215,8 +219,20 @@ public class Controller implements Initializable {
 
     @FXML
     void eliminarFigura(ActionEvent event) {
-        int index = Integer.parseInt(((TextField)event.getSource()).getText().substring(1));
+        int index = Integer.parseInt(inputEliminar.getText().substring(0, 1)) - 1;
+        String figura = inputEliminar.getText().substring(2);
+        int x = 0;
 
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).getName().equals(figura)) {
+                if (index == x) {
+                    arrayList.remove(i);
+                    listFigure.getItems().remove(i);
+                    offDisplay();
+                }
+                x++;
+            }
+        }
     }
 
     public void onlyNumbers(KeyEvent keyEvent) {
@@ -236,6 +252,8 @@ public class Controller implements Initializable {
     }
 
     void offDisplay() {
+        inputEliminar.setVisible(false);
+        buttonDelete.setVisible(false);
         editButton.setVisible(false);
         figuraName.setVisible(false);
         dato1.setVisible(false);
