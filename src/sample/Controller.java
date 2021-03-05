@@ -87,8 +87,23 @@ public class Controller implements Initializable {
         selectFigure.setDisable(true);
     }
 
+    void displayMessage(String header, String content, Alert.AlertType alert) {
+        Alert adminLoginFailedAlert = new Alert(alert);
+        DialogPane dialogPane = adminLoginFailedAlert.getDialogPane();
+        adminLoginFailedAlert.setTitle("Aviso");
+        adminLoginFailedAlert.setHeaderText(header);
+        adminLoginFailedAlert.setContentText(content);
+        adminLoginFailedAlert.showAndWait();
+    }
+
     @FXML
     void addFigure(ActionEvent event) {
+        if (x.getText().isEmpty() && x.isVisible() || y.getText().isEmpty() && y.isVisible()) {
+            displayMessage("Falta de datos.", "Ingrese los valores sin dejar los campos vacios.",
+                    Alert.AlertType.ERROR);
+            return;
+        }
+
         switch (figuraSeleccionada.getText()){
             case "Circulo":
                 arrayList.add(new Circulo(Integer.parseInt(x.getText())));
@@ -189,6 +204,7 @@ public class Controller implements Initializable {
         listFigure.setDisable(false);
         offPanel();
         selectFigure.setDisable(false);
+        displayMessage("Figura creada.", "Figura creada correctamente.", Alert.AlertType.INFORMATION);
     }
 
     @FXML
@@ -215,24 +231,39 @@ public class Controller implements Initializable {
                 break;
         }
         valorArea.setText("" + arrayList.get(index).getArea());
+        displayMessage("Datos Modificados.", "Los datos han sido editados correctamente.",
+                Alert.AlertType.INFORMATION);
     }
 
     @FXML
     void eliminarFigura(ActionEvent event) {
-        int index = Integer.parseInt(inputEliminar.getText().substring(0, 1)) - 1;
-        String figura = inputEliminar.getText().substring(2);
-        int x = 0;
+        int index = 0;
+        String figura = "";
+        try {
+            index = Integer.parseInt(inputEliminar.getText().substring(0, 1)) - 1;
+            figura = inputEliminar.getText().substring(2);
+        } catch (Exception e) {
+            displayMessage("Error", "Error en la entrada de datos, verifique el metodo de entrada de eliminacion.",
+                    Alert.AlertType.ERROR);
+            return;
+        }
 
+        int x = 0;
         for (int i = 0; i < arrayList.size(); i++) {
             if (arrayList.get(i).getName().equals(figura)) {
                 if (index == x) {
                     arrayList.remove(i);
                     listFigure.getItems().remove(i);
                     offDisplay();
+                    displayMessage("Figura Eliminada", "Figura eliminada de forma correcta.",
+                            Alert.AlertType.INFORMATION);
+                    return;
                 }
                 x++;
             }
         }
+        displayMessage("Figura no encontrada", "La figura no se ha encontrado, verifique los datos.",
+                Alert.AlertType.ERROR);
     }
 
     public void onlyNumbers(KeyEvent keyEvent) {
@@ -270,5 +301,8 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         offPanel();
         offDisplay();
+        buttonDelete.setTooltip(new Tooltip("Para eliminar una figura, debes colocar el numero de la figura pero\n" +
+                "en orden de su tipo de figura, es decir 3 Circulo, sera el tercer circulo, no el tercero de la lista,\n" +
+                " y despues su nombre. \n\n Ejemplo: [0-9] ['NOMBRE'] = 1 circulo."));
     }
 }
