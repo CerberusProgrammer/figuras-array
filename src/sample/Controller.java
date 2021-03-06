@@ -219,7 +219,15 @@ public class Controller implements Initializable {
         int indexFinal = figuraName.getText().indexOf("(") - 1;
         String figure = figuraName.getText().substring(4, indexFinal);
 
-        arrayList.remove(index);
+        System.out.println("index: " + index);
+        System.out.println("indexF: " + indexFinal);
+        System.out.println("figure: " + figure);
+
+        try {
+            arrayList.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            arrayList.remove(index - 1);
+        }
 
         switch (figure) {
             case "Circulo":
@@ -237,6 +245,9 @@ public class Controller implements Initializable {
                         Integer.parseInt(valor2.getText())));
                 break;
         }
+        listFigure.getItems().get(index).setText(figuraName.getText().substring(0, indexFinal) + " (" +
+                arrayList.get(index).getArea() + ")");
+
         valorArea.setText("" + arrayList.get(index).getArea());
         displayMessage("Datos Modificados.", "Los datos han sido editados correctamente.",
                 Alert.AlertType.INFORMATION);
