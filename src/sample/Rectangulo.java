@@ -8,12 +8,24 @@ public class Rectangulo extends Figura{
     private int area;
     private int base;
     private int altura;
+    private String id;
 
     public Rectangulo(int base, int altura) {
+        this.id = Controller.arrayList.size() + " - Rectangulo";
         this.name = "rectangulo";
         this.area = base * altura;
         this.base = base;
         this.altura = altura;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

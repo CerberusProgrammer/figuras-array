@@ -4,6 +4,15 @@ public class Figura {
 
     private String name;
     private int area;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

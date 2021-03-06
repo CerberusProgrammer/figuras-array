@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,8 +15,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -60,7 +60,7 @@ public class Controller implements Initializable {
     @FXML
     private Button buttonDelete;
 
-    ArrayList<Figura> arrayList = new ArrayList<>();
+    public static ArrayList<Figura> arrayList = new ArrayList<>();
 
     @FXML
     void selectFigure(ActionEvent event) {
@@ -118,15 +118,21 @@ public class Controller implements Initializable {
                 arrayList.add(new Triangulo(Integer.parseInt(x.getText()), Integer.parseInt(y.getText())));
                 break;
         }
-
-        MenuItem item = new MenuItem(arrayList.size() + " - "+ figuraSeleccionada.getText());
+        Figura actual = arrayList.get(arrayList.size() - 1);
+        MenuItem item = new MenuItem(actual.getId() + " (" + actual.getArea() + ")");
         item.setId("" + (arrayList.size() - 1));
 
         item.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 offDisplay();
-                Figura figura = arrayList.get(Integer.parseInt(item.getId()));
+                Figura figura;
+                try {
+                    figura = arrayList.get(Integer.parseInt(item.getId()));
+                } catch (IndexOutOfBoundsException e) {
+                    figura = arrayList.get(Integer.parseInt(item.getId()) - 1);
+                }
+
                 figuraName.setText(((MenuItem)event.getSource()).getText());
                 figuraName.setVisible(true);
 
@@ -210,7 +216,8 @@ public class Controller implements Initializable {
     @FXML
     void editValue(ActionEvent event) {
         int index = Integer.parseInt(figuraName.getText().substring(0, 1)) - 1;
-        String figure = figuraName.getText().substring(4);
+        int indexFinal = figuraName.getText().indexOf("(") - 1;
+        String figure = figuraName.getText().substring(4, indexFinal);
 
         arrayList.remove(index);
 
@@ -255,6 +262,11 @@ public class Controller implements Initializable {
                     arrayList.remove(i);
                     listFigure.getItems().remove(i);
                     offDisplay();
+
+                    for (int j = 0; j < listFigure.getItems().size(); j++) {
+                        listFigure.getItems().get(j).setId("" + j);
+                    }
+
                     displayMessage("Figura Eliminada", "Figura eliminada de forma correcta.",
                             Alert.AlertType.INFORMATION);
                     return;

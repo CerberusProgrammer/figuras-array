@@ -7,11 +7,23 @@ public class Circulo extends Figura {
     private String name;
     private int area;
     private int radio;
+    private String id;
 
     public Circulo(int radio) {
+        this.id = Controller.arrayList.size() + " - Circulo";
         this.name = "circulo";
         this.area = (int) (Math.PI * Math.pow(radio, 2));
         this.radio = radio;
+    }
+
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
