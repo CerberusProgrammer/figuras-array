@@ -215,13 +215,9 @@ public class Controller implements Initializable {
 
     @FXML
     void editValue(ActionEvent event) {
-        int index = Integer.parseInt(figuraName.getText().substring(0, 1)) - 1;
+        int index = Integer.parseInt(figuraName.getText().substring(0, 1));
         int indexFinal = figuraName.getText().indexOf("(") - 1;
         String figure = figuraName.getText().substring(4, indexFinal);
-
-        System.out.println("index: " + index);
-        System.out.println("indexF: " + indexFinal);
-        System.out.println("figure: " + figure);
 
         try {
             arrayList.remove(index);
@@ -247,6 +243,7 @@ public class Controller implements Initializable {
         }
         listFigure.getItems().get(index).setText(figuraName.getText().substring(0, indexFinal) + " (" +
                 arrayList.get(index).getArea() + ")");
+        figuraName.setText(listFigure.getItems().get(index).getText());
 
         valorArea.setText("" + arrayList.get(index).getArea());
         displayMessage("Datos Modificados.", "Los datos han sido editados correctamente.",
@@ -255,8 +252,8 @@ public class Controller implements Initializable {
 
     @FXML
     void eliminarFigura(ActionEvent event) {
-        int index = 0;
-        String figura = "";
+        int index;
+        String figura;
         try {
             index = Integer.parseInt(inputEliminar.getText().substring(0, 1)) - 1;
             figura = inputEliminar.getText().substring(2);
@@ -276,6 +273,7 @@ public class Controller implements Initializable {
 
                     for (int j = 0; j < listFigure.getItems().size(); j++) {
                         listFigure.getItems().get(j).setId("" + j);
+                        listFigure.getItems().get(j).setText(j + listFigure.getItems().get(j).getText().substring(1));
                     }
 
                     displayMessage("Figura Eliminada", "Figura eliminada de forma correcta.",
